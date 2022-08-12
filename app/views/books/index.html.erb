@@ -1,0 +1,38 @@
+<h1>Books</h1>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Body</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to "Show", "/books/#{book.id}" %></td>
+        <td><%= link_to "Edit", "/books/#{book.id}/edit" %></td>
+        <td><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Do you really want to delete it?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<h2>New book</h2>
+<% flash.each do |message_type, message| %>
+      <%= message %>
+<% end %>
+
+<%= form_with model: @book do |f| %>
+
+  <p>Title</p>
+  <%= f.text_field :title %>
+
+  <p>Body</p>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Create Book' %>
+
+<% end %>
