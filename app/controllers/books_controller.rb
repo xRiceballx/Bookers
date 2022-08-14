@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to '/books'
+      redirect_to "/books/#{@book.id}"
       flash[:success] = "List was successfully updated."
     else
       redirect_to '/books'
